@@ -1,6 +1,8 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 
 
 import { Input } from "@/components/ui/input";
@@ -266,70 +268,73 @@ export default function Home() {
 
 
 <section id="médecins" className="container max-w-5xl mx-auto py-12 space-y-6">
-  <div className="text-center mb-8">
-    <h1 className="text-4xl font-bold text-center mb-6">
-      Rencontrez un docteur
-    </h1>
-    <p className="text-center text-sm text-gray-500 font-extralight mb-12">
-      Des médecins bien qualifiés sont prêts à vous <br /> servir.
-    </p>
-  </div>
-  <div className="grid md:grid-cols-4 gap-6 justify-items-center">
-    {[
-      {
-        name: "Dr. Robert Henry",
-        specialty: "Cardiologue",
-        image: "/image/médecin.png" // Image spécifique pour Dr. Robert Henry
-      },
-      {
-        name: "Dr. Sarah Edwards",
-        specialty: "Pédiatre",
-        image: "/image/infimiére_prev_ui.png" // Image spécifique pour Dr. Sarah Edwards
-      },
-      {
-        name: "Dr. Michelle Kim",
-        specialty: "Dermatologue",
-        image: "/image/infimiére 2.png" // Image spécifique pour Dr. Michelle Kim
-      },
-      {
-        name: "Dr. Stephen Rogers",
-        specialty: "Neurologue",
-        image: "/image/docteur.png" // Image spécifique pour Dr. Stephen Rogers
-      },
-    ].map((doctor, index) => (
-      <Card key={index}>
-        <CardContent className="p-4 text-center">
-          <div className="mb-4">
-            <Image
-              src={doctor.image} // Utilisation de l'image spécifique pour chaque médecin
-              alt={doctor.name}
-              width={200}
-              height={200}
-              className="rounded-lg mx-auto"
-            />
-          </div>
-          <h3 className="font-medium">{doctor.name}</h3>
-          <p className="text-sm text-gray-500">{doctor.specialty}</p>
-          <div className="flex justify-center mt-2">
-            {Array(5)
-              .fill(null)
-              .map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-4 h-4 fill-blue-600 text-blue-600"
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-center mb-6">Rencontrez un docteur</h1>
+        <p className="text-center text-sm text-gray-500 font-extralight mb-12">
+          Des médecins bien qualifiés sont prêts à vous <br /> servir.
+        </p>
+      </div>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        navigation
+        pagination={{ clickable: true }}
+        spaceBetween={20}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        className="pb-12"
+      >
+        {[
+          {
+            name: 'Dr. Robert Henry',
+            specialty: 'Cardiologue',
+            image: '/image/médecin.png',
+          },
+          {
+            name: 'Dr. Sarah Edwards',
+            specialty: 'Pédiatre',
+            image: '/image/infimiére_prev_ui.png',
+          },
+          {
+            name: 'Dr. Michelle Kim',
+            specialty: 'Dermatologue',
+            image: '/image/infimiére 2.png',
+          },
+          {
+            name: 'Dr. Stephen Rogers',
+            specialty: 'Neurologue',
+            image: '/image/docteur.png',
+          },
+        ].map((doctor, index) => (
+          <SwiperSlide key={index} className="flex justify-center">
+            <div className="bg-white shadow-md rounded-lg p-4 text-center w-full max-w-sm">
+              <div className="mb-4">
+                <Image
+                  src={doctor.image}
+                  alt={doctor.name}
+                  width={200}
+                  height={200}
+                  className="rounded-lg mx-auto"
                 />
-              ))}
-          </div>
-          <p className="text-sm text-yellow-600 mt-1">
-            Excellent docteur
-          </p>
-        </CardContent>
-      </Card>
-    ))}
-  </div>
-</section>
-
-
+              </div>
+              <h3 className="font-medium">{doctor.name}</h3>
+              <p className="text-sm text-gray-500">{doctor.specialty}</p>
+              <div className="flex justify-center mt-2">
+                {Array(5)
+                  .fill(null)
+                  .map((_, i) => (
+                    <span key={i} className="w-4 h-4 text-blue-600">⭐</span>
+                  ))}
+              </div>
+              <p className="text-sm text-yellow-600 mt-1">Excellent docteur</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
 
 
 
@@ -431,7 +436,7 @@ export default function Home() {
              alt="Logo"
              width={70}
              height={60}
-             className="h-24 w-auto border border-red-500"
+             className="h-24 w-auto"
             
             />
             <p className="text-sm ">
@@ -457,8 +462,8 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <h3 className="font-medium mt-6 mb-4">Liens utiles</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-medium mt-8 mb-4 ">Liens utiles</h3>
+            <ul className="space-y-2 text-sm mt-6">
               <li>Docteurs</li>
               <li>À propos</li>
               <li>Nos valeurs</li>
@@ -467,8 +472,10 @@ export default function Home() {
           </div>
           
           <div>
-            <h3 className="font-medium mb-4">Adresse</h3>
-            <div className="h-32 bg-blue-400 rounded-lg" />
+            <h3 className="font-medium mb-4 mt-6">Adresse</h3>
+            <div className="">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.832502156365!2d2.3222454734820053!3d6.4155628244113805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a9af27b54b5b%3A0xe8540f899db59786!2sSpacesboost!5e0!3m2!1sfr!2sbj!4v1733761636463!5m2!1sfr!2sbj" className="border:0 h-48 w-100" allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
         </div>
         <div className="border-t border-white-400 max-w-5xl mx-auto"> 
