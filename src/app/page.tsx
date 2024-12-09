@@ -1,8 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@mui/material';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
 
 
 import { Input } from "@/components/ui/input";
@@ -268,73 +266,70 @@ export default function Home() {
 
 
 <section id="médecins" className="container max-w-5xl mx-auto py-12 space-y-6">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-center mb-6">Rencontrez un docteur</h1>
-        <p className="text-center text-sm text-gray-500 font-extralight mb-12">
-          Des médecins bien qualifiés sont prêts à vous <br /> servir.
-        </p>
-      </div>
-      <Swiper
-        modules={[Navigation, Pagination]}
-        navigation
-        pagination={{ clickable: true }}
-        spaceBetween={20}
-        slidesPerView={1}
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-        className="pb-12"
-      >
-        {[
-          {
-            name: 'Dr. Robert Henry',
-            specialty: 'Cardiologue',
-            image: '/image/médecin.png',
-          },
-          {
-            name: 'Dr. Sarah Edwards',
-            specialty: 'Pédiatre',
-            image: '/image/infimiére_prev_ui.png',
-          },
-          {
-            name: 'Dr. Michelle Kim',
-            specialty: 'Dermatologue',
-            image: '/image/infimiére 2.png',
-          },
-          {
-            name: 'Dr. Stephen Rogers',
-            specialty: 'Neurologue',
-            image: '/image/docteur.png',
-          },
-        ].map((doctor, index) => (
-          <SwiperSlide key={index} className="flex justify-center">
-            <div className="bg-white shadow-md rounded-lg p-4 text-center w-full max-w-sm">
-              <div className="mb-4">
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  width={200}
-                  height={200}
-                  className="rounded-lg mx-auto"
+  <div className="text-center mb-8">
+    <h1 className="text-4xl font-bold text-center mb-6">
+      Rencontrez un docteur
+    </h1>
+    <p className="text-center text-sm text-gray-500 font-extralight mb-12">
+      Des médecins bien qualifiés sont prêts à vous <br /> servir.
+    </p>
+  </div>
+  <div className="grid md:grid-cols-4 gap-6 justify-items-center">
+    {[
+      {
+        name: "Dr. Robert Henry",
+        specialty: "Cardiologue",
+        image: "/image/médecin.png" // Image spécifique pour Dr. Robert Henry
+      },
+      {
+        name: "Dr. Sarah Edwards",
+        specialty: "Pédiatre",
+        image: "/image/infimiére_prev_ui.png" // Image spécifique pour Dr. Sarah Edwards
+      },
+      {
+        name: "Dr. Michelle Kim",
+        specialty: "Dermatologue",
+        image: "/image/infimiére 2.png" // Image spécifique pour Dr. Michelle Kim
+      },
+      {
+        name: "Dr. Stephen Rogers",
+        specialty: "Neurologue",
+        image: "/image/docteur.png" // Image spécifique pour Dr. Stephen Rogers
+      },
+    ].map((doctor, index) => (
+      <Card key={index}>
+        <CardContent className="p-4 text-center">
+          <div className="mb-4">
+            <Image
+              src={doctor.image} // Utilisation de l'image spécifique pour chaque médecin
+              alt={doctor.name}
+              width={200}
+              height={200}
+              className="rounded-lg mx-auto"
+            />
+          </div>
+          <h3 className="font-medium">{doctor.name}</h3>
+          <p className="text-sm text-gray-500">{doctor.specialty}</p>
+          <div className="flex justify-center mt-2">
+            {Array(5)
+              .fill(null)
+              .map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-4 h-4 fill-blue-600 text-blue-600"
                 />
-              </div>
-              <h3 className="font-medium">{doctor.name}</h3>
-              <p className="text-sm text-gray-500">{doctor.specialty}</p>
-              <div className="flex justify-center mt-2">
-                {Array(5)
-                  .fill(null)
-                  .map((_, i) => (
-                    <span key={i} className="w-4 h-4 text-blue-600">⭐</span>
-                  ))}
-              </div>
-              <p className="text-sm text-yellow-600 mt-1">Excellent docteur</p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
+              ))}
+          </div>
+          <p className="text-sm text-yellow-600 mt-1">
+            Excellent docteur
+          </p>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</section>
+
+
 
 
 
