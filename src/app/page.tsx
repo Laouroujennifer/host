@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@mui/material';
 
@@ -8,6 +9,8 @@ import ServiceCard from '../components/ServiceCard.js';
 import { FaStethoscope, FaUsers, FaSyringe, FaHeart, FaMicroscope, FaPills, FaBrain, FaXRay } from 'react-icons/fa';
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
 
 
 interface SocialIconProps {
@@ -17,67 +20,121 @@ interface SocialIconProps {
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   
   return (
     
     <div className="flex flex-col min-h-screen">
       {/* Header */}
       <header className="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
-     <div className="flex items-center justify-between w-full max-w-[100%] px-16 py-4 mx-auto">
-    <Image
-      src="image/blue.svg"
-      alt="Logo"
-      width={50}
-      height={40}
-      className="h-14 w-auto "
-    />
-    <div className="block md:hidden">
-      {/* Menu Hamburger Icon */}
-      <button className="text-gray-600">
-        <span className="sr-only">Ouvrir le menu</span>
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-    <nav className="hidden md:flex items-center gap-8">
-      <a href="#" className="text-lg font-medium hover:text-blue-600">
-        Accueil
-      </a>
-      <a href="#valeurs" className="text-lg font-medium hover:text-blue-600">
-        Valeurs
-      </a>
-      <a href="#services" className="text-lg font-medium hover:text-blue-600">
-        Services
-      </a>
-      <a href="#médecins" className="text-lg font-medium hover:text-blue-600">
-        Médecins
-      </a>
-      <a href="#avis-des-patients" className="text-lg font-medium hover:text-blue-600">
-        Avis des patients
-      </a>
-      <a href="https://clinique-rd.onrender.com">
-      <button className="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-700">
-      Connexion
-      </button>
-      </a>
-      <a href="https://clinique-rd.onrender.com/users/sign_up">
-     <button className="px-4 py-1 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-100">
-     Sinscrire
-     </button>
-    </a>
+      <div className="flex items-center justify-between w-full max-w-[100%] px-6 py-4 mx-auto md:px-16">
+        {/* Logo */}
+        <Image
+          src="/image/blue.svg"
+          alt="Logo"
+          width={50}
+          height={40}
+          className="h-14 w-auto"
+        />
 
+        {/* Menu Hamburger Icon for Mobile */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="block md:hidden text-gray-600"
+          aria-label="Toggle menu"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {menuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
 
-    </nav>
-  </div>
-</header>   
+        {/* Navigation Links */}
+        <nav
+          className={`${
+            menuOpen ? "block" : "hidden"
+          } absolute top-full left-0 z-40 w-full bg-white md:relative md:top-0 md:flex md:w-auto md:items-center md:gap-8`}
+        >
+          <a
+            href="#"
+            className="block px-4 py-2 text-lg font-medium text-center hover:text-blue-600 md:inline md:px-0"
+          >
+            Accueil
+          </a>
+          <a
+            href="#valeurs"
+            className="block px-4 py-2 text-lg font-medium text-center hover:text-blue-600 md:inline md:px-0"
+          >
+            Valeurs
+          </a>
+          <a
+            href="#services"
+            className="block px-4 py-2 text-lg font-medium text-center hover:text-blue-600 md:inline md:px-0"
+          >
+            Services
+          </a>
+          <a
+            href="#médecins"
+            className="block px-4 py-2 text-lg font-medium text-center hover:text-blue-600 md:inline md:px-0"
+          >
+            Médecins
+          </a>
+          <a
+            href="#avis-des-patients"
+            className="block px-4 py-2 text-lg font-medium text-center hover:text-blue-600 md:inline md:px-0"
+          >
+            Avis des patients
+          </a>
+          <a
+            href="https://clinique-rd.onrender.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-2 text-center md:inline md:px-0"
+          >
+            <button className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 md:w-auto">
+              Connexion
+            </button>
+          </a>
+          <a
+            href="https://clinique-rd.onrender.com/users/sign_up"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-2 text-center md:inline md:px-0"
+          >
+            <button className="w-full px-4 py-2 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-100 md:w-auto">
+              Sinscrire
+            </button>
+
+            </a>
+        </nav>
+      </div>
+    </header>
 
 
       <main className="flex-1">
         {/* Hero Section */}
         <section className="container max-w-5xl mx-auto py-0">
    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center justify-items-center text-center lg:text-left ">
-    <div className="space-y-6">
+   <div className="space-y-6 lg:space-y-6">
+
       <h2 className="text-[40px] font-extrabold text-gray-800 tracking-wide font-poppins mt-24">
         Nous nous soucions de votre santé.
       </h2>
@@ -100,36 +157,40 @@ export default function Home() {
         alt="Healthcare Illustration"
         width={500}  
         height={500}
-        className="rounded-lg object-cover mt-24"
+        className="rounded-lg object-contain  mt-16 sm:mt-20 lg:mt-16 w-full lg:w-auto"
         priority
       />
     </div>
   </div>
 </section>
 
-<section id="valeurs" className="py-16 bg-white">
+<section id="valeurs" className="py-8 sm:py-12 lg:py-16 bg-white px-4 sm:px-6 lg:px-0">
   <div className="container mx-auto max-w-5xl">
-    <h1 className="text-4xl font-bold text-center mb-6">
+    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6">
       Nos Valeurs
     </h1>
-    <p className="text-center text-sm text-gray-500 font-extralight mb-12">Des principes forts pour guider toutes  nos actions.</p>
-    <div className="grid gap-10 md:grid-cols-3">
+    <p className="text-xs sm:text-sm md:text-base text-center text-gray-500 font-extralight mb-12">
+      Des principes forts pour guider toutes nos actions.
+    </p>
+    <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
       {/* Empathie */}
       <div className="flex flex-col p-6 bg-white shadow-md rounded-2xl">
         <div className="flex items-center">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center">
             <Image
-              src="/image/circle2.svg" // Chemin relatif
+              src="/image/circle2.svg"
               alt="Icône d'empathie"
               width={48}
               height={48}
-              className="w-12 h-12"
+              className="w-full h-full"
             />
           </div>
         </div>
-        <h3 className="mt-4 text-lg font-bold text-left">Empathie</h3>
-        <div className="w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
-        <p className="text-gray-800 text-left font-light">
+        <h3 className="mt-4 text-sm sm:text-base md:text-lg font-bold text-left">
+          Empathie
+        </h3>
+        <div className="w-6 md:w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
+        <p className="text-gray-800 text-xs sm:text-sm md:text-base text-left font-light">
           Être à l&apos;écoute des besoins et comprendre les attentes de santé.
         </p>
       </div>
@@ -137,19 +198,21 @@ export default function Home() {
       {/* Bienveillance */}
       <div className="flex flex-col p-6 bg-white shadow-md rounded-2xl">
         <div className="flex items-center">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center">
             <Image
-              src="/image/circle.svg" 
+              src="/image/circle.svg"
               alt="Icône de bienveillance"
               width={48}
               height={48}
-              className="w-12 h-12"
+              className="w-full h-full"
             />
           </div>
         </div>
-        <h3 className="mt-4 text-lg font-bold text-left">Bienveillance</h3>
-        <div className="w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
-        <p className="text-gray-800 text-left font-light">
+        <h3 className="mt-4 text-sm sm:text-base md:text-lg font-bold text-left">
+          Bienveillance
+        </h3>
+        <div className="w-6 md:w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
+        <p className="text-gray-800 text-xs sm:text-sm md:text-base text-left font-light">
           Accompagner gentiment et soulager au mieux ceux qui souffrent.
         </p>
       </div>
@@ -157,19 +220,21 @@ export default function Home() {
       {/* Intégrité */}
       <div className="flex flex-col p-6 bg-white shadow-md rounded-2xl">
         <div className="flex items-center">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center">
             <Image
-              src="/image/circcle3.svg" 
+              src="/image/circcle3.svg"
               alt="Icône d'intégrité"
               width={48}
               height={48}
-              className="w-12 h-12"
+              className="w-full h-full"
             />
           </div>
         </div>
-        <h3 className="mt-4 text-lg font-bold text-left">Intégrité</h3>
-        <div className="w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
-        <p className="text-gray-800 text-left font-light">
+        <h3 className="mt-4 text-sm sm:text-base md:text-lg font-bold text-left">
+          Intégrité
+        </h3>
+        <div className="w-6 md:w-8 h-0.5 bg-blue-500 mt-2 mb-4"></div>
+        <p className="text-gray-800 text-xs sm:text-sm md:text-base text-left font-light">
           Agir avec honnêteté et transparence dans toutes nos démarches.
         </p>
       </div>
@@ -177,18 +242,16 @@ export default function Home() {
   </div>
 </section>
 
-
-
         {/* Services Section */}
         <section id="services" className="container mx-auto px-4 py-12 max-w-5xl">
-  <h1 className="text-4xl font-bold text-center mb-6">
+  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6">
     Nos Services Médicaux
   </h1>
-  <p className="text-center text-sm text-gray-500 font-extralight mb-12">
+  <p className="text-xs sm:text-sm md:text-base text-center text-gray-500 font-extralight mb-12">
     Nous sommes dédiés à vous offrir les meilleures<br />services médicaux
   </p>
 
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-14">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-14 justify-items-center">
     <ServiceCard icon={<FaStethoscope />} title="Médecine" />
     <ServiceCard icon={<FaUsers />} title="Pédiatrie" />
     <ServiceCard icon={<FaSyringe />} title="Vaccination" />
@@ -199,6 +262,8 @@ export default function Home() {
     <ServiceCard icon={<FaBrain />} title="Neurologie" />
   </div>
 </section>
+
+
 
 <section id="médecins" className="container max-w-5xl mx-auto py-12 space-y-6">
   <div className="text-center mb-8">
