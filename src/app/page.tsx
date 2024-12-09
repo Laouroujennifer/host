@@ -340,7 +340,7 @@ export default function Home() {
   <p className="text-center text-sm text-gray-500 font-extralight mb-12">
     Voyons ce que nos clients satisfaits disent.
   </p>
-  <div className="grid md:grid-cols-3 gap-6 justify-items-center">
+  <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
     {[
       {
         id: 1,
@@ -366,36 +366,29 @@ export default function Home() {
     ].map((testimonial) => (
       <div
         key={testimonial.id}
-        className="shadow-xl p-6 rounded-xl bg-white transition-shadow duration-300 hover:shadow-2xl"
+        className="shadow-xl p-6 rounded-xl bg-white transition-shadow duration-300 hover:shadow-2xl flex flex-col items-center"
       >
-        <div className="flex items-start gap-4">
-          {/* Image */}
-          <Image
-            src={testimonial.image}
-            alt={testimonial.name}
-            width={48}
-            height={48}
-            className="rounded-full"
-          />
-          {/* Détails */}
-          <div className="flex flex-col">
-            {/* Nom et description */}
-            <h3 className="font-bold text-xl">{testimonial.name}</h3>
-            <p className="text-sm text-gray-950 mt-2">{testimonial.description}</p>
-            {/* Étoiles */}
-            <div className="flex gap-x-1 mt-3">
-              {Array(5)
-                .fill(null)
-                .map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 fill-blue-600 text-blue-600"
-                  />
-                ))}
-            </div>
-            {/* Témoignage */}
-            <p className="text-gray-950 mt-3">{testimonial.testimony}</p>
+        <Image
+          src={testimonial.image}
+          alt={testimonial.name}
+          width={48}
+          height={48}
+          className="rounded-full"
+        />
+        <div className="flex flex-col items-center mt-4">
+          <h3 className="font-bold text-xl text-center">{testimonial.name}</h3>
+          <p className="text-sm text-gray-950 mt-2 text-center">{testimonial.description}</p>
+          <div className="flex gap-x-1 mt-3">
+            {Array(5)
+              .fill(null)
+              .map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-4 h-4 fill-blue-600 text-blue-600"
+                />
+              ))}
           </div>
+          <p className="text-gray-950 mt-3 text-center">{testimonial.testimony}</p>
         </div>
       </div>
     ))}
@@ -424,63 +417,64 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-blue-500 text-white">
-        <div className="container max-w-5xl mx-auto py-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 justify-items-center text-center md:text-left">
-          <div>
-          <Image
-             src="image/blanc.svg"
-             alt="Logo"
-             width={70}
-             height={60}
-             className="h-24 w-auto"
-            
-            />
-            <p className="text-sm ">
-              La bonne est un état de bien être mental physique et social et
-              cela ne signifie pas seulement l&apos;absence de maladie.
-            </p>
-            <div className="flex space-x-4 mt-6 ">
-              <SocialIcon href="#" icon={Facebook} label="Facebook" />
-              <SocialIcon
-                href="#"
-                icon={() => (
-                  <svg
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                )}
-                label="Twitter"
-              />
-              <SocialIcon href="#" icon={Instagram} label="Instagram" />
-            </div>
-          </div>
-          <div>
-            <h3 className="font-medium mt-8 mb-4 ">Liens utiles</h3>
-            <ul className="space-y-2 text-sm mt-6">
-              <li>Docteurs</li>
-              <li>À propos</li>
-              <li>Nos valeurs</li>
-              <li>Rendez-vous</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-medium mb-4 mt-6">Adresse</h3>
-            <div className="">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.832502156365!2d2.3222454734820053!3d6.4155628244113805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a9af27b54b5b%3A0xe8540f899db59786!2sSpacesboost!5e0!3m2!1sfr!2sbj!4v1733761636463!5m2!1sfr!2sbj" className="border:0 h-48 w-100" allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-white-400 max-w-5xl mx-auto"> 
+  <div className="container max-w-5xl mx-auto py-12 grid gap-y-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center text-center md:text-left">
+    <div className="flex flex-col items-center md:items-start">
+      <Image
+        src="image/blanc.svg"
+        alt="Logo"
+        width={70}
+        height={60}
+        className="h-24 w-auto"
+      />
+      <p className="text-sm mt-4 text-center md:text-left">
+        La bonne santé est un état de bien-être mental, physique et social, et
+        cela ne signifie pas seulement l&apos;absence de maladie.
+      </p>
+      <div className="flex space-x-4 mt-6 justify-center md:justify-start">
+        <SocialIcon href="#" icon={Facebook} label="Facebook" />
+        <SocialIcon
+          href="#"
+          icon={() => (
+            <svg
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          )}
+          label="Twitter"
+        />
+        <SocialIcon href="#" icon={Instagram} label="Instagram" />
+      </div>
+    </div>
+    <div className="flex flex-col items-center md:items-start">
+      <h3 className="font-medium mt-8 mb-4">Liens utiles</h3>
+      <ul className="space-y-2 text-sm mt-6 text-center md:text-left">
+        <li>Docteurs</li>
+        <li>À propos</li>
+        <li>Nos valeurs</li>
+        <li>Rendez-vous</li>
+      </ul>
+    </div>
+    <div className="flex flex-col items-center">
+      <h3 className="font-medium mb-4 mt-6">Adresse</h3>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.832502156365!2d2.3222454734820053!3d6.4155628244113805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a9af27b54b5b%3A0xe8540f899db59786!2sSpacesboost!5e0!3m2!1sfr!2sbj!4v1733761636463!5m2!1sfr!2sbj"
+        className="border-0 h-48 w-full"
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+  <div className="border-t border-white-400 max-w-5xl mx-auto mt-8">
+    <div className="container max-w-5xl mx-auto py-4 text-sm text-center">
+      © 2024 Medical Services. Tous droits réservés.
+    </div>
+  </div>
+</footer>
 
-
-          <div className="container max-w-5xl mx-auto py-4 text-sm text-center">
-            © 2024 Medical Services. Tous droits réservés.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
