@@ -332,7 +332,7 @@ export default function Home() {
 
 
 
-
+ 
 
 
 <section id="avis-des-patients" className="container max-w-5xl mx-auto py-12 space-y-6">
